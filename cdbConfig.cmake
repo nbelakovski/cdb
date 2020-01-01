@@ -1,5 +1,5 @@
 
-find_program(cdb cdb /usr/bin)
+find_program(cdb cdb /usr/local/bin)
 
 function(break)
     get_cmake_property(_variableNames VARIABLES)

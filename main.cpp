@@ -37,6 +37,7 @@ int main (int argc, char * argv[])
     using_history();
     const std::string history_filename = std::string(getenv("HOME")) + "/.cdb_history";
     int x = read_history(history_filename.c_str());
+    std::cout << "Type ?, h, or help for a list of available commands" << std::endl;
     while( (line = readline(") ")) )
     {
         add_history(line);
