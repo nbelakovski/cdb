@@ -8,10 +8,8 @@
 
 int main (int argc, char * argv[])
 {
-    std::cout << "argc: " << argc << std::endl;
     // the first arg is of the form var1=value1;var2=value2, so we need to
     // split by ';', and then split again by '=' and generate a map of var-value pairs
-    std::cout << argv[1][0] << argv[1][1] << std::endl;
     const std::string vars(argv[1]);
     size_t index = 0;
     std::map<std::string, std::string> varvals;
@@ -36,25 +34,39 @@ int main (int argc, char * argv[])
         varvals[var] = val;
     }
     char * line = nullptr;
-    while( line = readline(") "))
+    using_history();
+    const std::string history_filename = std::string(getenv("HOME")) + "/.cdb_history";
+    int x = read_history(history_filename.c_str());
+    while( (line = readline(") ")) )
     {
         add_history(line);
-//        std::cout << ") ";
-//        getline(std::cin, command);
-        // todo: interpret up as previous command
-        // right now just assume message(STATUS ${var})
-        std::string command(line);
-        size_t open_brace_pos = command.find('{');
-        size_t close_brace_pos = command.find('}');
-        const std::string var = command.substr(open_brace_pos + 1, close_brace_pos - open_brace_pos - 1);
-        if (varvals.find(var) != varvals.end()) {
-            std::cout << varvals[var] << std::endl;
-        } else {
-            std::cout << var << " not found" << std::endl;
-        }
+        std::string command(line); // put it in an std::string for convenience
         free(line);
         line = nullptr;
+        if(command == "exit" || command == "quit")
+        {
+            break;
+        }
+        else if(command == "dump")
+        {
+            for(const auto & pair : varvals)
+            {
+                std::cout << pair.first << "=" << pair.second << std::endl;
+            }
+        }
+        else
+        {
+            size_t open_brace_pos = command.find("${");
+            size_t close_brace_pos = command.find('}');
+            const std::string var = command.substr(open_brace_pos + 2, close_brace_pos - open_brace_pos - 2);
+            if (varvals.find(var) != varvals.end()) {
+                std::cout << varvals[var] << std::endl;
+            } else {
+                std::cout << var << " not found" << std::endl;
+            }
+        }
     }
+    int y = write_history(history_filename.c_str());
     return 0;
 }
 
