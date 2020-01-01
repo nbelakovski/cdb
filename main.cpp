@@ -54,6 +54,12 @@ int main (int argc, char * argv[])
                 std::cout << pair.first << "=" << pair.second << std::endl;
             }
         }
+        else if(command == "help" || command == "?" || command == "h")
+        {
+            std::cout << "dump - print out all variables and their values" << std::endl;
+            std::cout << "exit - exits the program. Can also be accomplished with 'quit' and Ctrl + D" << std::endl;
+            std::cout << "${var} - prints out the value of var. If var does not exist, prints 'var not found'" << std::endl;
+        }
         else
         {
             size_t open_brace_pos = command.find("${");
