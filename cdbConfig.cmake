@@ -1,5 +1,5 @@
 
-find_program(cdb cdb /usr/local/bin)
+find_program(cdb cdb /usr/bin ${CMAKE_CURRENT_SOURCE_DIR}/build)
 
 function(break)
     get_cmake_property(_variableNames VARIABLES)
