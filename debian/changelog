@@ -1,3 +1,9 @@
+cdb (0.1.3) bionic; urgency=medium
+
+  * Switching to catch from gtest since its header only
+
+ -- Nickolai Belakovski <nbelakovski@gmail.com>  Wed, 01 Jan 2020 22:46:23 -0800
+
 cdb (0.1.2) bionic; urgency=medium
 
   * Fix issue with depending on readline6 instead of 7

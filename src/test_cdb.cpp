@@ -1,19 +1,15 @@
 #include <cdb/cdb.h>
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include <catch2/catch.hpp>
 
-#include <gtest/gtest.h>
 
-TEST(cdb, ExtractVars)
+TEST_CASE("cdb", "ExtractVars")
 {
-    const std::string vars("abc=123;t=;f=");
+    const std::string vars("abc=123;t=;f=a");
     std::map<std::string, std::string> varvals = cdb::extract_vars(vars);
-    ASSERT_EQ(varvals.size(), 3);
-    ASSERT_STREQ(varvals["abc"].c_str(), "123");
-    ASSERT_STREQ(varvals["t"].c_str(), "");
-    ASSERT_STREQ(varvals["f"].c_str(), "");
+    REQUIRE(varvals.size() == 3);
+    REQUIRE(varvals["abc"] == "123");
+    REQUIRE(varvals["t"] == "");
+    REQUIRE(varvals["f"] == "a");
 }
 
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

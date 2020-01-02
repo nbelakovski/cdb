@@ -3,12 +3,7 @@ language: c++
 os: linux
 dist: bionic
 install: 
-  - sudo apt-get install --yes libreadline7 cmake libgtest-dev
-  # compile gtest
-  - pushd /usr/src/googletest
-  - sudo cmake .
-  - sudo cmake --build . --target install
-  - popd
+  - sudo apt-get install --yes libreadline7 cmake
 compiler: g++
 
 script: mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && make && ctest
