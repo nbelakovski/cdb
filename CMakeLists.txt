@@ -4,6 +4,8 @@ project(cdb)
 add_library(${PROJECT_NAME}_lib src/cdb.cpp)
 target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_compile_features(${PROJECT_NAME}_lib PUBLIC cxx_std_11)
+target_compile_options(${PROJECT_NAME}_lib PUBLIC --coverage)
+target_link_libraries(${PROJECT_NAME}_lib PUBLIC gcov)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 
@@ -16,6 +18,12 @@ install(FILES cdbConfig.cmake DESTINATION /usr/share/cmake/cdb/)
 ## Testing
 enable_testing()
 add_test(NAME ${PROJECT_NAME}_test COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/test.sh")
+
+find_package(GTest REQUIRED)
+add_executable(${PROJECT_NAME}_gtest src/test_cdb.cpp)
+target_include_directories(${PROJECT_NAME}_gtest PUBLIC ${GTest_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME}_gtest PUBLIC ${PROJECT_NAME}_lib ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread)
+gtest_discover_tests(${PROJECT_NAME}_gtest)
 
 ## Packaging
 # SET(CPACK_GENERATOR "DEB")

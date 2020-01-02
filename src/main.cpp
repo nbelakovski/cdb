@@ -14,9 +14,8 @@ int main (int argc, char * argv[])
     std::map<std::string, std::string> varvals = cdb::extract_vars(std::string(argv[1]));
     
     char * line = nullptr;
-    using_history();
     const std::string history_filename = std::string(getenv("HOME")) + "/.cdb_history";
-    int x = read_history(history_filename.c_str());
+    (void) read_history(history_filename.c_str());
     std::cout << "Type ?, h, or help for a list of available commands" << std::endl;
     while( (line = readline(") ")) )
     {
@@ -53,7 +52,7 @@ int main (int argc, char * argv[])
             }
         }
     }
-    int y = write_history(history_filename.c_str());
+    (void) write_history(history_filename.c_str());
     return 0;
 }
 
