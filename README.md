@@ -4,11 +4,25 @@
 
 ## Installation
 
+From PPA (work in progress)
 ```
 sudo add-apt-repository ppa:nbelakovski/cdb
 sudo apt-get update
 sudo apt-get install cdb
 ```
+
+From source:
+```
+git clone https://github.com/nbelakovski/cdb.git
+cd cdb
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
+
+This will install just two files, `/usr/bin/cdb` and `/usr/share/cmake/cdb/cdbConfig.cmake`
 
 ## Usage
 
@@ -21,6 +35,9 @@ and then call the break function anywhere you want to stop executation and exami
 `break()`
 
 You can see an example in the test/ folder.
+
+`break()` will take all of the cmake variables active in the current context and pass them to the cdb program which
+will let you examine them. Exiting from that examination will continue the cmake process.
 
 ## Notes
 
