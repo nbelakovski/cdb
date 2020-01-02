@@ -20,8 +20,6 @@ enable_testing()
 add_test(NAME ${PROJECT_NAME}_integration_test COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/test.sh")
 
 add_executable(${PROJECT_NAME}_unit_test src/test_cdb.cpp)
-target_include_directories(${PROJECT_NAME}_unit_test PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/catch2/include)
 target_link_libraries(${PROJECT_NAME}_unit_test PUBLIC ${PROJECT_NAME}_lib)
 add_test(NAME ${PROJECT_NAME}_unit_test_runner COMMAND
     ${PROJECT_NAME}_unit_test)

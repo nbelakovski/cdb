@@ -3,7 +3,7 @@ language: c++
 os: linux
 dist: bionic
 install: 
-  - sudo apt-get install --yes libreadline7 cmake
+  - sudo apt-get install --yes libreadline7 cmake catch
 compiler: g++
 
 script: mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && make && ctest
