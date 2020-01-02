@@ -4,6 +4,7 @@ project(cdb)
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} readline)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 
 ## Installation
 install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin/)
