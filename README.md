@@ -1,17 +1,14 @@
 [![Build Status](https://travis-ci.com/nbelakovski/cdb.svg?branch=master)](https://travis-ci.com/nbelakovski/cdb) [![codecov](https://codecov.io/gh/nbelakovski/cdb/branch/master/graph/badge.svg)](https://codecov.io/gh/nbelakovski/cdb)
-
-
-
 ## Installation
 
-From PPA (work in progress)
+From PPA
 ```
 sudo add-apt-repository ppa:nbelakovski/cdb
 sudo apt-get update
 sudo apt-get install cdb
 ```
 
-From source:
+From source
 ```
 git clone https://github.com/nbelakovski/cdb.git
 cd cdb
