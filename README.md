@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.com/nbelakovski/cdb.svg?branch=master)](https://travis-ci.com/nbelakovski/cdb)
+[![Build Status](https://travis-ci.com/nbelakovski/cdb.svg?branch=master)](https://travis-ci.com/nbelakovski/cdb) [![codecov](https://codecov.io/gh/nbelakovski/cdb/branch/master/graph/badge.svg)](https://codecov.io/gh/nbelakovski/cdb)
+
+
 
 ## Installation
 

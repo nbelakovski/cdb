@@ -1,9 +1,19 @@
 language: c++
 
 os: linux
+dist: bionic
 install: 
-  - sudo apt-get install --yes cmake libreadline6
+  - sudo apt-get install --yes libreadline7 cmake libgtest-dev
+  # compile gtest
+  - pushd /usr/src/googletest
+  - sudo cmake .
+  - sudo cmake --build . --target install
+  - popd
 compiler: g++
 
 script: mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && make && ctest
+
+after_success: 
+  - cd ~/build/nbelakovski/cdb
+  - bash <(curl -s https://codecov.io/bash)
 
