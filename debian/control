@@ -2,7 +2,7 @@ Source: cdb
 Section: devel
 Priority: optional
 Maintainer: Nickolai Belakovski <nbelakovski@gmail.com>
-Build-Depends: debhelper (>= 10), libreadline6, cmake
+Build-Depends: debhelper (>= 10), libreadline7, cmake
 Standards-Version: 4.1.2
 Vcs-Git: https://github.com/nbelakovski/cdb.git
 

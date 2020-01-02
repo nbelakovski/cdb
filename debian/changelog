@@ -1,3 +1,9 @@
+cdb (0.1.2) bionic; urgency=medium
+
+  * Fix issue with depending on readline6 instead of 7
+
+ -- Nickolai Belakovski <nbelakovski@gmail.com>  Wed, 01 Jan 2020 22:22:09 -0800
+
 cdb (0.1.1) bionic; urgency=medium
 
   * 
