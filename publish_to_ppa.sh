@@ -9,5 +9,6 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 git clean -xffd
 rm -rf ../cdb_*
 debuild -S -sa
-dput -f ppa:nbelakovski/cdb ../cdb_0.1.0_source.changes
+VERSION=$(head -1 debian/changelog | awk '{print $2}' | sed 's/[()]//g')
+dput ppa:nbelakovski/cdb ../cdb_${VERSION}_source.changes
 

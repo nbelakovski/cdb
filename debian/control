@@ -8,6 +8,6 @@ Vcs-Git: https://github.com/nbelakovski/cdb.git
 
 Package: cdb
 Architecture: any
-Depends: libc6, libgcc1, libreadline7, libstdc++6
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgcc1, libreadline7, libstdc++6
 Description: A debugger for CMake files
   Simple for now, with great ambitions
