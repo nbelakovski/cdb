@@ -5,34 +5,14 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#include <cdb/cdb.h>
 
 int main (int argc, char * argv[])
 {
     // the first arg is of the form var1=value1;var2=value2, so we need to
     // split by ';', and then split again by '=' and generate a map of var-value pairs
-    const std::string vars(argv[1]);
-    size_t index = 0;
-    std::map<std::string, std::string> varvals;
-    size_t pos = 0;
-    while((pos = vars.find(';', index)) != std::string::npos)
-    {
-        const std::string varval = vars.substr(index, pos - index);
-        index = pos+1;
-        // now split on '='
-        int pos2 = varval.find('=');
-        const std::string var = varval.substr(0, pos2);
-        const std::string val = varval.substr(pos2 + 1);
-        varvals[var] = val;
-    }
-    // last one
-    {
-        const std::string varval = vars.substr(index);
-        // now split on '='
-        int pos2 = varval.find('=');
-        const std::string var = varval.substr(0, pos2);
-        const std::string val = varval.substr(pos2 + 1);
-        varvals[var] = val;
-    }
+    std::map<std::string, std::string> varvals = cdb::extract_vars(std::string(argv[1]));
+    
     char * line = nullptr;
     using_history();
     const std::string history_filename = std::string(getenv("HOME")) + "/.cdb_history";

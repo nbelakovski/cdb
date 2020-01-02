@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 project(cdb)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_library(${PROJECT_NAME}_lib src/cdb.cpp)
+target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_features(${PROJECT_NAME}_lib PUBLIC cxx_std_11)
 
-target_link_libraries(${PROJECT_NAME} readline)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+add_executable(${PROJECT_NAME} src/main.cpp)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_lib readline)
 
 ## Installation
 install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin/)
