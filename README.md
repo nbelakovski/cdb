@@ -52,7 +52,7 @@ To get the value of a particular variable, use ${var}
 ```
 ) ${CMAKE_AR}
 /usr/bin/ar
-) %{CMAKE_ARC}
+) ${CMAKE_ARC}
 CMAKE_ARC not found
 ```
 
