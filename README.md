@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/nbelakovski/cdb.svg?branch=master)](https://travis-ci.com/nbelakovski/cdb)
+
 ## Installation
 
 ```
