@@ -16,13 +16,23 @@ install(TARGETS ${PROJECT_NAME} DESTINATION /usr/bin/)
 install(FILES cdbConfig.cmake DESTINATION /usr/share/cmake/cdb/)
 
 ## Testing
-enable_testing()
-add_test(NAME ${PROJECT_NAME}_integration_test COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/test.sh")
 
-add_executable(${PROJECT_NAME}_unit_test src/test_cdb.cpp)
-target_link_libraries(${PROJECT_NAME}_unit_test PUBLIC ${PROJECT_NAME}_lib)
-add_test(NAME ${PROJECT_NAME}_unit_test_runner COMMAND
+option(BUILD_TESTING "Build the tests." ON)
+include(CTest)
+
+if(BUILD_TESTING)
+  ## We should look for Catch2 here, but it looks like the Ubuntu `catch`
+  ## package doesn't provide the Catch2Config.cmake file, so that this would
+  ## fail in Travis...
+  # find_package(Catch2 REQUIRED)
+  enable_testing()
+  add_test(NAME ${PROJECT_NAME}_integration_test COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/test.sh")
+
+  add_executable(${PROJECT_NAME}_unit_test src/test_cdb.cpp)
+  target_link_libraries(${PROJECT_NAME}_unit_test PUBLIC ${PROJECT_NAME}_lib)
+  add_test(NAME ${PROJECT_NAME}_unit_test_runner COMMAND
     ${PROJECT_NAME}_unit_test)
+endif(BUILD_TESTING)
 
 ## Packaging
 # SET(CPACK_GENERATOR "DEB")
