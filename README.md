@@ -8,7 +8,11 @@ sudo apt-get update
 sudo apt-get install cdb
 ```
 
-From source
+Building from source requires [the GNU `readline`
+library](https://tiswww.case.edu/php/chet/readline/rltop.html).  Building tests
+requires [Catch2](https://github.com/catchorg/Catch2) (use `-DBUILD_TESTING=OFF`
+to disable them):
+
 ```
 git clone https://github.com/nbelakovski/cdb.git
 cd cdb
